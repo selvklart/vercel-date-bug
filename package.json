@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "TZ=Europe/Norway/Oslo next start",
     "lint": "next lint"
   },
   "dependencies": {
