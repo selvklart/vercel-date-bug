@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-
+process.env.TZ = "Europe/Oslo"
 dayjs.locale('nb');
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -25,8 +25,7 @@ export default function handler(
 ) {
 
   console.log(process.env.TZ)
-  process.env.TZ = "Europe/Oslo"
-  console.log(process.env.TZ)
+  
 
   const dayjsDateNow = dayjs().tz("Europe/Oslo").local()
   const dateNow = new Date()
