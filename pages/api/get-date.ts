@@ -26,6 +26,7 @@ export default function handler(
 
   const dayjsDateNow = dayjs().tz("Europe/Oslo").local()
   const dateNow = new Date()
+  console.log(dayjsDateNow.utcOffset())
 
   res.status(200).json({
     dayjsDate: dayjsDateNow.toString(),
