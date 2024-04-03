@@ -14,14 +14,21 @@ dayjs.extend(isoWeek);
 
 export default function Home() {
 
+  const [dayjsAPIDate, setDayjsAPIDate] = useState<string | null>(null)
+  const [dayjsDateNow, setDayjsDateNow] = useState<string | null>(null)
+
   const [apiDate, setApiDate] = useState<string | null>(null)
   const [dateNow, setDateNow] = useState<string | null>(null)
+
 
   const handleClick =  () => {
     try {
       fetch('/api/get-date')
         .then(response => response.json())
-        .then(data => setApiDate(data.date))
+        .then(data => {
+          setDayjsAPIDate(data.dayjsDate)
+          setApiDate(data.date)
+        })
 
     } catch (error) {
       console.error(error)
@@ -29,9 +36,13 @@ export default function Home() {
   }
 
   useEffect(() => {
+    // Dayjs
     const now = dayjs().tz("Europe/Oslo")
-    console.log(now.toDate().toString())
-    setDateNow(now.toDate().toString())
+    setDayjsDateNow(now.toDate().toString())
+
+    // Date
+    const date = new Date()
+    setDateNow(date.toLocaleString("nb-NO"))
   }, [])
 
   return (
@@ -41,10 +52,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <h1>Date time error</h1>
-        <p><strong>Date on render time (Europe/Oslo):</strong> {dateNow}</p>
+        <h1>Date time bug</h1>
+        <p><strong>Dayjs, Date on render time (Europe/Oslo):</strong> {dayjsDateNow}</p>
+        <p><strong>Date, Date on render time (nb-NO):</strong> {dateNow}</p>
         <button onClick={handleClick}>Get date from api</button>
-        <p><strong>Fetched date:</strong> {apiDate}</p>
+        <p><strong>Dayjs, Fetched date:</strong> {dayjsAPIDate}</p>
+        <p><strong>Date, Fetched date:</strong> {apiDate}</p>
       </main>
     </>
   );

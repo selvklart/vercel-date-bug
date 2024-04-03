@@ -16,6 +16,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   date: string;
+  dayjsDate: string;
 };
 
 export default function handler(
@@ -23,7 +24,11 @@ export default function handler(
   res: NextApiResponse<Data>,
 ) {
 
-  const dateNow = dayjs().tz("Europe/Oslo")
+  const dayjsDateNow = dayjs().tz("Europe/Oslo")
+  const dateNow = new Date()
 
-  res.status(200).json({ date: dateNow.toDate().toString() });
+  res.status(200).json({
+    dayjsDate: dayjsDateNow.toDate().toString(),
+    date: dateNow.toLocaleString("nb-NO"),
+  });
 }
