@@ -42,7 +42,7 @@ export default function Home() {
 
     // Date
     const date = new Date()
-    setDateNow(date.toLocaleString("nb-NO"))
+    setDateNow(date.toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}))
   }, [])
 
   return (

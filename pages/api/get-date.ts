@@ -29,6 +29,6 @@ export default function handler(
 
   res.status(200).json({
     dayjsDate: dayjsDateNow.toDate().toString(),
-    date: dateNow.toLocaleString("nb-NO"),
+    date: dateNow.toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}),
   });
 }
