@@ -39,7 +39,7 @@ export default function Home() {
 
   useEffect(() => {
     // Dayjs
-    const now = dayjs().locale("nb-NO").tz("Europe/Oslo", true)
+    const now = dayjs().tz("Europe/Oslo")
     setDayjsDateNow(now.toDate().toString())
 
     console.log(now.locale())

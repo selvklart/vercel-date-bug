@@ -24,11 +24,11 @@ export default function handler(
   res: NextApiResponse<Data>,
 ) {
 
-  const dayjsDateNow = dayjs().locale("nb").tz("Europe/Oslo", true)
+  const dayjsDateNow = dayjs().locale("nb").tz("Europe/Oslo")
   const dateNow = new Date()
 
   res.status(200).json({
-    dayjsDate: dayjsDateNow.toDate().toString(),
+    dayjsDate: dayjsDateNow.local().toDate().toString(),
     date: dateNow.toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}),
   });
 }
