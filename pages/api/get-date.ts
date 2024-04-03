@@ -3,7 +3,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
-
+dayjs.locale('nb');
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(isoWeek);
@@ -24,7 +24,7 @@ export default function handler(
   res: NextApiResponse<Data>,
 ) {
 
-  const dayjsDateNow = dayjs().tz("Europe/Oslo")
+  const dayjsDateNow = dayjs().locale("nb").tz("Europe/Oslo", true)
   const dateNow = new Date()
 
   res.status(200).json({

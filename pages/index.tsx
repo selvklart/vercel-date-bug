@@ -8,6 +8,8 @@ import utc from 'dayjs/plugin/utc';
 
 import 'dayjs/locale/nb';
 
+
+dayjs.locale('nb');
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(isoWeek);
@@ -37,8 +39,10 @@ export default function Home() {
 
   useEffect(() => {
     // Dayjs
-    const now = dayjs().tz("Europe/Oslo")
+    const now = dayjs().locale("nb-NO").tz("Europe/Oslo", true)
     setDayjsDateNow(now.toDate().toString())
+
+    console.log(now.locale())
 
     // Date
     const date = new Date()
