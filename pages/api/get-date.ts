@@ -28,7 +28,7 @@ export default function handler(
   const dateNow = new Date()
 
   res.status(200).json({
-    dayjsDate: dayjsDateNow.toDate().toString(),
+    dayjsDate: dayjsDateNow.toDate().toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}),
     date: dateNow.toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}),
   });
 }
